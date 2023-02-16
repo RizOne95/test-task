@@ -11,6 +11,13 @@
 
 
 Далее развернул два кластера в Docker. 
+
+1. Создал Dockerfile используя образ alpine в качестве основного.
  
 ![3_1](https://user-images.githubusercontent.com/86364025/219379133-5953db7e-d7fb-466e-bb21-b981a4ceb44e.png)
 ![3_2](https://user-images.githubusercontent.com/86364025/219379156-143ed0ec-b544-48a1-bf40-265cbd6475d8.png)
+
+Задание 2.2(усложненное)
+Написать роль на Ansible по развёртыванию стенда из Задание 2.1.(4 виртуальных сервера (2 web сервера и 2 сервера с Haproxy+Keepalived) с балансировкой roundrobin) Должен быть описан файл инвентори.
+
+Написал 3 роли (Nginx, Haproxy, Keepalived), конфиги оформил в jinja2, переменные вывел в отдельный в group_vars, роли расписал в каталоге roles
