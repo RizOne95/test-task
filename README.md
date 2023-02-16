@@ -13,6 +13,12 @@
 Далее развернул два кластера в Docker. 
 
 1. Создал Dockerfile используя образ alpine в качестве основного.
+2. Написал docker-compose.yml с описанием  2-х хоста мастера и 2-х зависимых хостов
+3. Далее написал конфиги для keepalived и haproxy
+4. Затем создал 4 веб-страницы, две для Master и две для Backup
+5. Сконфигурировал два конфига для haproxy.
+6. Написал сценарий для entrypoint.sh
+7. Все конфиги выложил в папку /Docker в корень проекта.
  
 ![3_1](https://user-images.githubusercontent.com/86364025/219379133-5953db7e-d7fb-466e-bb21-b981a4ceb44e.png)
 ![3_2](https://user-images.githubusercontent.com/86364025/219379156-143ed0ec-b544-48a1-bf40-265cbd6475d8.png)
