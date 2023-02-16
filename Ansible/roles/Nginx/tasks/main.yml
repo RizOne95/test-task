@@ -1,0 +1,47 @@
+---
+- name: Deploy nginx
+  package: 
+    name: nginx
+    state: latest
+  
+- name: Start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+
+- block: #===Conf for Web1====
+    - name: Copy nginx conf
+      template:
+        src: web1_nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+
+  
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: web1_index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
+      notify:
+        - restart nginx
+  when: ansible_nodename == "web1"
+    
+
+- block: #===Conf for Web2====    
+    - name: Copy nginx conf
+      template:
+        src: web2_nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+#when: ansible_nodename == "web2"
+  
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: web2_index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
+      notify:
+        - restart nginx
+  when: ansible_nodename == "web2"
+      
+      

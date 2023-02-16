@@ -1,0 +1,8 @@
+---
+ansible_user: root 
+ansible_password: 1
+
+web1: 192.168.31.49
+web2: 192.168.31.50
+virtual_ipaddress: 192.168.31.100
+timeout: 70

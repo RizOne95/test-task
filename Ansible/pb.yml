@@ -1,0 +1,13 @@
+---
+# HAProxy servers
+- hosts: webservers
+  become: true
+  roles:
+    - Nginx
+
+- hosts: loadbalancers
+  become: true
+  roles:
+    - Haproxy
+    - Keepalived
+  

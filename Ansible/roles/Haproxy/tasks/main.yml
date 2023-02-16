@@ -1,0 +1,19 @@
+---
+- name: install haproxy
+  ansible.builtin.apt:
+    name: haproxy
+    state: latest
+    update_cache: yes
+    
+- name: "Create haproxy config file"
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    backup: yes
+    owner: root
+    mode: 0644
+  notify:
+    - restart haproxy
+    
+- name: HAProxy to start at boot
+  service: name=haproxy enabled=yes state=started
