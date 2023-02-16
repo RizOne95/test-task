@@ -1,0 +1,77 @@
+version: "3"
+services:
+   master1:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./index-master1.html:/usr/share/nginx/html/index.html
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico
+      - ./keepalived-master1.conf:/etc/keepalived/keepalived.conf
+    networks:
+      static-network:
+        ipv4_address: 172.18.128.2
+    cap_add: 
+      - NET_ADMIN
+   slave1:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./index-slave1.html:/usr/share/nginx/html/index.html
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico
+      - ./keepalived-slave1.conf:/etc/keepalived/keepalived.conf
+    networks:
+      static-network:
+        ipv4_address: 172.18.128.3
+    cap_add: 
+        - NET_ADMIN
+   master2:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./index-master2.html:/usr/share/nginx/html/index.html
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico
+      - ./keepalived-master2.conf:/etc/keepalived/keepalived.conf
+    networks:
+      static-network:
+        ipv4_address: 172.18.127.2
+    cap_add: 
+      - NET_ADMIN
+   slave2:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./index-slave2.html:/usr/share/nginx/html/index.html
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico
+      - ./keepalived-slave2.conf:/etc/keepalived/keepalived.conf
+    networks:
+      static-network:
+        ipv4_address: 172.18.127.3
+    cap_add: 
+        - NET_ADMIN
+   haproxy1:
+    image: haproxy:1.7-alpine
+    ports:
+      - 8000:6301
+    volumes:
+      - ./haproxy1.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    networks:
+      - static-network
+   haproxy2:
+    image: haproxy:1.7-alpine
+    ports:
+      - 8001:6301
+    volumes:
+      - ./haproxy2.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    networks:
+      - static-network
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+
