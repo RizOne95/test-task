@@ -19,7 +19,7 @@
 5. Сконфигурировал два конфига для haproxy.
 6. Написал сценарий для entrypoint.sh
 7. Все конфиги выложил в папку /Docker в корень проекта.
- 
+![3_3](https://user-images.githubusercontent.com/86364025/219385200-b3554420-69e3-43a2-ac0c-a00280a6604c.png)
 ![3_1](https://user-images.githubusercontent.com/86364025/219379133-5953db7e-d7fb-466e-bb21-b981a4ceb44e.png)
 ![3_2](https://user-images.githubusercontent.com/86364025/219379156-143ed0ec-b544-48a1-bf40-265cbd6475d8.png)
 
