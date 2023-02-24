@@ -1,0 +1,12 @@
+---
+ansible_user: root 
+ansible_password: 1
+
+docker_network: 172.18.0.0/16
+container_name: my_image
+container_tag: v1
+
+ipv4_for_master1: 172.18.128.2
+ipv4_for_slave1: 172.18.128.3
+ipv4_for_master2: 172.18.127.2
+ipv4_for_slave2: 172.18.127.3

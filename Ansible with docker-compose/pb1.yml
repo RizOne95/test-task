@@ -1,0 +1,8 @@
+---
+- hosts: all
+        
+  roles:
+    - Create_docker_image_and_network
+    - Install_ master1_slave1
+    - Install_ master2_slave2
+    - Install_ haproxy1_haproxy2  

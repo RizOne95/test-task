@@ -1,0 +1,36 @@
+---
+  - name: Install master2
+    docker_container:
+      name: 'master2'
+      recreate: true
+      restart_policy: unless-stopped
+      image: "{{container_name}}:{{container_tag}}"
+      capabilities:
+        - NET_ADMIN
+      volumes:
+        - "./index-master2.html:/usr/share/nginx/html/index.html"
+        - "./favicon.ico:/usr/share/nginx/html/favicon.ico"
+        - "./keepalived-master2.conf:/etc/keepalived/keepalived.conf"
+      networks:
+        - name: "network_app"
+          ipv4_address: "{{ipv4_for_master2}}"
+      purge_networks: no
+      networks_cli_compatible: yes
+
+  - name: Install slave2
+    docker_container:
+      name: 'slave2'
+      recreate: true
+      restart_policy: unless-stopped
+      image: "{{container_name}}:{{container_tag}}"
+      capabilities:
+        - NET_ADMIN
+      volumes:
+        - "./index-slave2.html:/usr/share/nginx/html/index.html"
+        - "./favicon.ico:/usr/share/nginx/html/favicon.ico"
+        - "./keepalived-slave2.conf:/etc/keepalived/keepalived.conf"
+      networks:
+        - name: "network_app"
+          ipv4_address: "{{ipv4_for_slave2}}"
+      purge_networks: no
+      networks_cli_compatible: yes

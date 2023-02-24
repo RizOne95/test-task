@@ -1,0 +1,30 @@
+---
+  - name: Install haproxy1
+    docker_container:
+      name: 'haproxy1'
+      recreate: true
+      restart_policy: unless-stopped
+      image: 'haproxy:1.7-alpine'
+      published_ports:
+        - "8000:6301"
+      volumes:
+        - "./haproxy1.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+      networks:
+        - name: "network_app"
+      purge_networks: no
+      networks_cli_compatible: yes
+
+  - name: Install haproxy2
+    docker_container:
+      name: 'haproxy2'
+      recreate: true
+      restart_policy: unless-stopped
+      image: 'haproxy:1.7-alpine'
+      published_ports:
+        - "8001:6301"
+      volumes:
+        - "./haproxy2.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+      networks:
+        - name: "network_app"
+      purge_networks: no
+      networks_cli_compatible: yes

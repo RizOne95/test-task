@@ -1,0 +1,12 @@
+---
+  - name: Build Docker image
+    docker_image:
+      path: /home/ansible/Ansible_docker-compose/
+      name: "{{container_name}}"
+      tag: "{{container_tag}}"
+          
+  - name: Create network
+    docker_network:
+      name: network_app
+      ipam_config:
+        - subnet: "{{docker_network}}"
