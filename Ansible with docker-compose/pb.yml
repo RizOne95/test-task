@@ -1,6 +1,6 @@
 ---
 - hosts: all
-        
+  become: true      
   roles:
     - Create_docker_image_and_network
     - Install_ master1_slave1
